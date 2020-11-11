@@ -51,6 +51,6 @@ img {
   /* height: 200px;
   width: 200px; */
   opacity: 1;
-  -webkit-transition: opacity 3500ms linear;
-  transition: opacity 3500ms linear;
+  -webkit-transition: opacity 1500ms linear;
+  transition: opacity 1500ms linear;
 }
