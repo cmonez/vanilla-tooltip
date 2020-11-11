@@ -43,3 +43,7 @@ img {
 .country {
   margin-top: 20%;
 }
+
+.tooltip-box {
+  position: absolute;
+}
