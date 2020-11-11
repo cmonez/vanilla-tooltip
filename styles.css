@@ -46,7 +46,11 @@ img {
 
 .tooltip {
   position: absolute;
+  border-radius: 10px;
   background-color: green;
   /* height: 200px;
   width: 200px; */
+  opacity: 1;
+  -webkit-transition: opacity 1500ms linear;
+  transition: opacity 1500ms linear;
 }
