@@ -2,6 +2,8 @@ const cards = document.querySelectorAll('.user-card');
 
 cards.forEach((card) => {
   card.addEventListener('mouseenter', () => {
+    // if (card.lastChild.classList[0] === undefined) {
+    console.log(card.childNodes);
     const toolTip = document.createElement('div');
     toolTip.classList.add('tooltip');
     domRect = card.getBoundingClientRect();
@@ -15,6 +17,9 @@ cards.forEach((card) => {
     const newContent = document.createTextNode('Hi there and greetings!');
     toolTip.appendChild(newContent);
     card.appendChild(toolTip);
+    // } else {
+    // console.log('Already created!');
+    // }
   });
 });
 
