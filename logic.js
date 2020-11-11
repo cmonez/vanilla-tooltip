@@ -4,6 +4,7 @@ cards.forEach((card) => {
   card.addEventListener('mouseenter', () => {
     if (card.lastChild.classList[0] === 'user-info') {
       const toolTip = document.createElement('div');
+      toolTip.classList.add('save');
       toolTip.classList.add('tooltip');
       domRect = card.getBoundingClientRect();
       const xCoordinate = domRect.x;
@@ -18,6 +19,9 @@ cards.forEach((card) => {
       card.appendChild(toolTip);
     } else {
       console.log('Already created!');
+      console.log(card.lastChild);
+      card.lastChild.style.opacity = '1';
+      card.lastChild.classList.add('save');
     }
   });
 });
@@ -25,10 +29,11 @@ cards.forEach((card) => {
 cards.forEach((card) => {
   card.addEventListener('mouseleave', function () {
     const toolTipToRemove = document.querySelector('.tooltip');
+    toolTipToRemove.classList.remove('save');
     toolTipToRemove.style.opacity = '0';
     setTimeout(function () {
       toolTipToRemove.style.opacity = '0';
       card.removeChild(toolTipToRemove);
-    }, 1500);
+    }, 3500);
   });
 });
