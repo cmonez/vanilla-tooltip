@@ -1,32 +1,32 @@
 const userContainer = document.querySelector('.user-container');
 
 for (let i = 0; i < randomUsers.results.length; i++) {
-  createChildDiv(randomUsers.results[i]);
-  console.log(randomUsers.results[i]);
+  createChildDiv(randomUsers.results[i], i);
+  console.log(randomUsers.results[i], i);
 }
 
 const cards = document.querySelectorAll('.user-card');
 
-cards.forEach((card) => {
+cards.forEach((card, index) => {
   card.addEventListener('mouseenter', () => {
-    createToolTip(card);
+    createToolTip(card, index, randomUsers.results[index]);
   });
 });
 
-// cards.forEach((card) => {
-//   card.addEventListener('mouseleave', function () {
-//     // Make sure you grab the child div NOT from the whole body
-//     console.log('Here is the card', card);
-//     const toolTipToRemove = card.querySelector('.tooltip');
-//     toolTipToRemove.style.opacity = '0';
-//     setTimeout(function () {
-//       toolTipToRemove.style.opacity = '0';
-//       card.removeChild(toolTipToRemove);
-//     }, 1500);
-//   });
-// });
+cards.forEach((card) => {
+  card.addEventListener('mouseleave', function () {
+    // Make sure you grab the child div NOT from the whole body
+    console.log('Here is the card', card);
+    const toolTipToRemove = card.querySelector('.tooltip');
+    toolTipToRemove.style.opacity = '0';
+    setTimeout(function () {
+      toolTipToRemove.style.opacity = '0';
+      card.removeChild(toolTipToRemove);
+    }, 1500);
+  });
+});
 
-function createToolTip(node) {
+function createToolTip(node, index, userInformation) {
   // If the tooltip exists already, REMOVE it
   if (node.lastChild.classList[0] !== 'user-info') {
     const toolTipToRemove = node.querySelector('.tooltip');
@@ -51,8 +51,8 @@ function createToolTip(node) {
   contactInfo.classList.add('left-spacing');
   contactInfo.classList.add('embolden');
   contactInfo.innerText = 'Contact Info:';
-  phoneNumber.innerText = 'Phone Number: 0441-168-903';
-  email.innerText = 'Email: louis.tremblay@example.com';
+  phoneNumber.innerText = `Phone Number: ${userInformation.cell}`;
+  email.innerText = `Email: ${userInformation.email}`;
 
   phoneNumber.classList.add('left-spacing', 'top-spacing');
   email.classList.add('left-spacing', 'top-spacing');
