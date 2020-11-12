@@ -5,6 +5,28 @@ for (let i = 0; i < randomUsers.results.length; i++) {
 }
 
 const cards = document.querySelectorAll('.user-card');
+const button = document.querySelector('button');
+
+button.addEventListener('click', () => {
+  fetch('https://randomuser.me/api/?results=8')
+    .then((response) => response.json())
+    .then((data) => {
+      for (let i = 0; i < data.results.length; i++) {
+        let createdDiv = createChildDiv(data.results[i]);
+        createdDiv.addEventListener('mouseenter', () => {
+          createToolTip(createdDiv, i, data.results[i]);
+        });
+        createdDiv.addEventListener('mouseleave', function () {
+          const toolTipToRemove = createdDiv.querySelector('.tooltip');
+          toolTipToRemove.style.opacity = '0';
+          setTimeout(function () {
+            toolTipToRemove.style.opacity = '0';
+            toolTipToRemove.remove();
+          }, 1500);
+        });
+      }
+    });
+});
 
 cards.forEach((card, index) => {
   card.addEventListener('mouseenter', () => {
@@ -81,4 +103,5 @@ function createChildDiv(user) {
   userInfoDiv.appendChild(countryDiv);
   childDiv.appendChild(userInfoDiv);
   userContainer.appendChild(childDiv);
+  return childDiv;
 }
