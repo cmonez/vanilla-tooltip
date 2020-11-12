@@ -11,20 +11,8 @@ button.addEventListener('click', () => {
   fetch('https://randomuser.me/api/?results=8')
     .then((response) => response.json())
     .then((data) => {
-      for (let i = 0; i < data.results.length; i++) {
-        let createdDiv = createChildDiv(data.results[i]);
-        createdDiv.addEventListener('mouseenter', () => {
-          createToolTip(createdDiv, i, data.results[i]);
-        });
-        createdDiv.addEventListener('mouseleave', function () {
-          const toolTipToRemove = createdDiv.querySelector('.tooltip');
-          toolTipToRemove.style.opacity = '0';
-          setTimeout(function () {
-            toolTipToRemove.style.opacity = '0';
-            toolTipToRemove.remove();
-          }, 1500);
-        });
-      }
+      // Clear the userContainer
+      resetParentContainer(data.results);
     });
 });
 
@@ -104,4 +92,24 @@ function createChildDiv(user) {
   childDiv.appendChild(userInfoDiv);
   userContainer.appendChild(childDiv);
   return childDiv;
+}
+
+// Function to reset the parent container and attach events to each child
+function resetParentContainer(newCards) {
+  userContainer.innerHTML = '';
+  // Iterate over results and add eventListeners for toolTip functionality
+  for (let i = 0; i < newCards.length; i++) {
+    let createdDiv = createChildDiv(newCards[i]);
+    createdDiv.addEventListener('mouseenter', () => {
+      createToolTip(createdDiv, i, newCards[i]);
+    });
+    createdDiv.addEventListener('mouseleave', function () {
+      const toolTipToRemove = createdDiv.querySelector('.tooltip');
+      toolTipToRemove.style.opacity = '0';
+      setTimeout(function () {
+        toolTipToRemove.style.opacity = '0';
+        toolTipToRemove.remove();
+      }, 1500);
+    });
+  }
 }
