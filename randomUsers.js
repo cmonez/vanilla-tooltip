@@ -1,5 +1,6 @@
 const randomUsers = {
   results: [
+    ///
     {
       gender: 'female',
       name: { title: 'Mrs', first: 'Marion', last: 'Dumas' },
@@ -35,6 +36,7 @@ const randomUsers = {
       },
       nat: 'FR',
     },
+    ///
     {
       gender: 'female',
       name: { title: 'Madame', first: 'Irmgard', last: 'Colin' },

@@ -2,6 +2,7 @@ const userContainer = document.querySelector('.user-container');
 
 for (let i = 0; i < randomUsers.results.length; i++) {
   createChildDiv(randomUsers.results[i]);
+  console.log(randomUsers.results[i]);
 }
 
 const cards = document.querySelectorAll('.user-card');
@@ -12,23 +13,24 @@ cards.forEach((card) => {
   });
 });
 
-cards.forEach((card) => {
-  card.addEventListener('mouseleave', function () {
-    // Make sure you grab the child div NOT from the whole body
-    const toolTipToRemove = card.querySelector('.tooltip');
-    toolTipToRemove.style.opacity = '0';
-    setTimeout(function () {
-      toolTipToRemove.style.opacity = '0';
-      card.removeChild(toolTipToRemove);
-    }, 1500);
-  });
-});
+// cards.forEach((card) => {
+//   card.addEventListener('mouseleave', function () {
+//     // Make sure you grab the child div NOT from the whole body
+//     console.log('Here is the card', card);
+//     const toolTipToRemove = card.querySelector('.tooltip');
+//     toolTipToRemove.style.opacity = '0';
+//     setTimeout(function () {
+//       toolTipToRemove.style.opacity = '0';
+//       card.removeChild(toolTipToRemove);
+//     }, 1500);
+//   });
+// });
 
 function createToolTip(node) {
   // If the tooltip exists already, REMOVE it
   if (node.lastChild.classList[0] !== 'user-info') {
     const toolTipToRemove = node.querySelector('.tooltip');
-    console.log('In tooltip remove', toolTipToRemove);
+    // console.log('In tooltip remove', toolTipToRemove);
     node.removeChild(toolTipToRemove);
   }
   // Set the tooltip
@@ -42,8 +44,22 @@ function createToolTip(node) {
   toolTip.style.height = `${height * 0.5}px`;
   toolTip.style.width = `${width * 0.6}px`;
   toolTip.style.marginTop = `-${height * 0.5 + 10}px`;
-  const newContent = document.createTextNode('Hi there and greetings!');
-  toolTip.appendChild(newContent);
+  const contactInfo = document.createElement('div');
+  const phoneNumber = document.createElement('div');
+  const email = document.createElement('div');
+
+  contactInfo.classList.add('left-spacing');
+  contactInfo.classList.add('embolden');
+  contactInfo.innerText = 'Contact Info:';
+  phoneNumber.innerText = 'Phone Number: 0441-168-903';
+  email.innerText = 'Email: louis.tremblay@example.com';
+
+  phoneNumber.classList.add('left-spacing', 'top-spacing');
+  email.classList.add('left-spacing', 'top-spacing');
+  toolTip.appendChild(contactInfo);
+  toolTip.appendChild(phoneNumber);
+  toolTip.appendChild(email);
+
   node.appendChild(toolTip);
 }
 
