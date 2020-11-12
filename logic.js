@@ -1,3 +1,9 @@
+const userContainer = document.querySelector('.user-container');
+
+for (let i = 0; i < randomUsers.results.length; i++) {
+  createChildDiv(randomUsers.results[i]);
+}
+
 const cards = document.querySelectorAll('.user-card');
 
 cards.forEach((card) => {
@@ -39,4 +45,26 @@ function createToolTip(node) {
   const newContent = document.createTextNode('Hi there and greetings!');
   toolTip.appendChild(newContent);
   node.appendChild(toolTip);
+}
+
+function createChildDiv(user) {
+  // Create user-card div and all its nested divs
+  // grab information from current iterable and set
+  let childDiv = document.createElement('div');
+  childDiv.classList.add('user-card');
+  let profilePicture = document.createElement('img');
+  let userInfoDiv = document.createElement('div');
+  userInfoDiv.classList.add('user-info');
+  let nameDiv = document.createElement('div');
+  nameDiv.classList.add('name');
+  nameDiv.innerText = `${user.name.first} ${user.name.last}`;
+  let countryDiv = document.createElement('div');
+  countryDiv.classList.add('country');
+  countryDiv.innerText = `${user.location.country}`;
+  profilePicture.src = user.picture.large;
+  childDiv.appendChild(profilePicture);
+  userInfoDiv.appendChild(nameDiv);
+  userInfoDiv.appendChild(countryDiv);
+  childDiv.appendChild(userInfoDiv);
+  userContainer.appendChild(childDiv);
 }
