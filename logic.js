@@ -2,7 +2,6 @@ const userContainer = document.querySelector('.user-container');
 
 for (let i = 0; i < randomUsers.results.length; i++) {
   createChildDiv(randomUsers.results[i], i);
-  console.log(randomUsers.results[i], i);
 }
 
 const cards = document.querySelectorAll('.user-card');
@@ -16,12 +15,11 @@ cards.forEach((card, index) => {
 cards.forEach((card) => {
   card.addEventListener('mouseleave', function () {
     // Make sure you grab the child div NOT from the whole body
-    console.log('Here is the card', card);
     const toolTipToRemove = card.querySelector('.tooltip');
     toolTipToRemove.style.opacity = '0';
     setTimeout(function () {
       toolTipToRemove.style.opacity = '0';
-      card.removeChild(toolTipToRemove);
+      toolTipToRemove.remove();
     }, 1500);
   });
 });
